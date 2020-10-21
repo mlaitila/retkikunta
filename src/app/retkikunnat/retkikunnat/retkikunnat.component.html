@@ -1,0 +1,36 @@
+<div>
+    <mat-card>
+        <button mat-icon-button (click)="openDialogCreateRetkikunta()"><mat-icon class="green-icon">add_circle</mat-icon></button>
+    </mat-card>        
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nimi </th>
+            <td mat-cell *matCellDef="let retkikunta"> {{retkikunta.payload.doc.data().name}} </td>
+         </ng-container>
+         <ng-container matColumnDef="destination">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kohde </th>
+            <td mat-cell *matCellDef="let retkikunta"> {{retkikunta.payload.doc.data().destination}} </td>
+         </ng-container>
+         <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Lähtöpäivä </th>
+            <td mat-cell *matCellDef="let retkikunta"> {{retkikunta.payload.doc.data().startDate.toDate() | date:'MM-dd-yyyy'}} </td>
+         </ng-container>
+         <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Paluupäivä </th>
+            <td mat-cell *matCellDef="let retkikunta"> {{retkikunta.payload.doc.data().endDate.toDate() | date:'MM-dd-yyyy'}} </td>
+         </ng-container>
+         <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+            <td mat-cell *matCellDef="let retkikunta">
+                <button mat-flat-button color="primary">Näytä</button>
+                <button mat-flat-button color="alert">Poista</button>                
+            </td>
+          </ng-container>
+         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div>
+        <button mat-raised-button (click)="getTravellersForRetkikunta()">Test</button>
+    </div>
+</div>

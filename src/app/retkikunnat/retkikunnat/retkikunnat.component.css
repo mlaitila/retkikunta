@@ -1,0 +1,8 @@
+table {
+    width: 50%;
+    align-items: center;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }

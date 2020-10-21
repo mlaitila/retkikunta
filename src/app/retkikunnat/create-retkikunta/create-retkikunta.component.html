@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Create Expedition</h2>
+<mat-dialog-content class="mat-typography">
+	<form [formGroup]="createExpeditionForm" (ngSubmit)="onSubmit()">
+		<div>
+		<mat-form-field class="example-full-width">
+			<mat-label>Expedition name</mat-label>
+			<input matInput type="text" formControlName="name">
+		  </mat-form-field>
+		</div>
+		<div>
+		  <mat-form-field class="example-full-width">
+			<mat-label>Destination</mat-label>
+			<input matInput type="text" formControlName="destination">
+		  </mat-form-field>
+		</div>
+		<div>
+		  <mat-form-field appearance="fill">
+			<mat-label>Enter a date range</mat-label>
+			<mat-date-range-input [rangePicker]="picker">
+			  <input matStartDate placeholder="Start date" formControlName="startDate">
+			  <input matEndDate placeholder="End date" formControlName="endDate">
+			</mat-date-range-input>
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-date-range-picker #picker></mat-date-range-picker>
+		  </mat-form-field>
+		</div>
+
+		<div formArrayName="aliases">
+			<h3>Aliases</h3> <button (click)="addAdventurer()">Add Alias</button>
+		
+			<div *ngFor="let alias of aliases.controls; let i=index">
+			  <!-- The repeated alias template -->
+			  <label>
+				Alias:
+				<input type="text" [formControlName]="i">
+			  </label>
+			</div>
+		  </div>
+
+		<mat-dialog-actions align="left">
+			<button mat-flat-button color="primary" type="submit">Add Expedition</button>
+		</mat-dialog-actions>
+	  </form>
+</mat-dialog-content>
+<div>
+<mat-dialog-actions align="right">
+	<button mat-flat-button color="warn" (click)="close()" >Close</button>
+</mat-dialog-actions>
+</div>
