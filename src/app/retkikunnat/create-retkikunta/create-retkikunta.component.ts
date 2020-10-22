@@ -17,13 +17,13 @@ export class CreateRetkikuntaComponent {
     destination: ['', Validators.required],
     startDate: [''],
     endDate: [''],
-    aliases: this.formBuilder.array([
+    adventurers: this.formBuilder.array([
       this.formBuilder.control('')
     ])
   });
 
-  get aliases() {
-    return this.createExpeditionForm.get('aliases') as FormArray;
+  get adventurers() {
+    return this.createExpeditionForm.get('adventurers') as FormArray;
   }
 
   isAnimate: true;
@@ -40,7 +40,7 @@ export class CreateRetkikuntaComponent {
 
   addAdventurer(){
     console.log("Todo add advent")
-    this.aliases.push(this.formBuilder.control(''));
+    this.adventurers.push(this.formBuilder.control(''));
 
   }
   onSubmit(){

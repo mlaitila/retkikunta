@@ -25,13 +25,13 @@
 		  </mat-form-field>
 		</div>
 
-		<div formArrayName="aliases">
-			<h3>Aliases</h3> <button (click)="addAdventurer()">Add Alias</button>
+		<div formArrayName="adventurers">
+			<h3>adventurers</h3> <button (click)="addAdventurer()">Add adventurer</button>
 		
-			<div *ngFor="let alias of aliases.controls; let i=index">
+			<div *ngFor="let adventurer of adventurers.controls; let i=index">
 			  <!-- The repeated alias template -->
 			  <label>
-				Alias:
+				Adventurer:
 				<input type="text" [formControlName]="i">
 			  </label>
 			</div>
