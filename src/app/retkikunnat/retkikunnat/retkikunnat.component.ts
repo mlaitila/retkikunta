@@ -48,7 +48,7 @@ export class RetkikunnatComponent implements OnInit {
 
   openDialogCreateRetkikunta(){
     console.log("CreateRetkikunta");
-    const dialogRef = this.dialog.open(CreateRetkikuntaComponent,{panelClass: ['animate__animated','animate__slideInLeft']});
+    const dialogRef = this.dialog.open(CreateRetkikuntaComponent,{panelClass: ['animate__animated','animate__slideInLeft'], height:'75%',width:'40%'});
   }
 
 }
