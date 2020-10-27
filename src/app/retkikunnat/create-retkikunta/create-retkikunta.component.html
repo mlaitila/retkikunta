@@ -26,14 +26,11 @@
 		</div>
 
 		<div formArrayName="adventurers">
-			<h3>adventurers</h3> <button (click)="addAdventurer()">Add adventurer</button>
-		
+			<h3>adventurers</h3> <button mat-flat-button color="primary" (click)="addAdventurer()">Add adventurer</button>
 			<div *ngFor="let adventurer of adventurers.controls; let i=index">
 			  <!-- The repeated alias template -->
-			  <label>
-				Adventurer:
-				<input type="text" [formControlName]="i">
-			  </label>
+			  <mat-label>Adventurer:</mat-label>
+				<input matInput type="text" [formControlName]="i">
 			</div>
 		  </div>
 
