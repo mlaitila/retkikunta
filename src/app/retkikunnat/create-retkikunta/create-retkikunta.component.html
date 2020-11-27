@@ -26,7 +26,10 @@
 		</div>
 
 		<div formArrayName="adventurers">
-			<h3>adventurers</h3> <button mat-flat-button color="primary" (click)="addAdventurer()">Add adventurer</button>
+			<div class="inline">
+				<h3>adventurers</h3>
+				<button mat-icon-button type="button" (click)="addAdventurer()"><mat-icon class="green-icon">add_circle</mat-icon></button>
+			</div>
 			<div *ngFor="let adventurer of adventurers.controls; let i=index">
 			  <!-- The repeated alias template -->
 			  <mat-label>Adventurer:</mat-label>
@@ -35,7 +38,7 @@
 		  </div>
 
 		<mat-dialog-actions align="left">
-			<button mat-flat-button color="primary" type="submit">Add Expedition</button>
+			<button mat-flat-button color="primary" type="submit" [disabled]="!createExpeditionForm.valid">Add Expedition</button>
 		</mat-dialog-actions>
 	  </form>
 </mat-dialog-content>

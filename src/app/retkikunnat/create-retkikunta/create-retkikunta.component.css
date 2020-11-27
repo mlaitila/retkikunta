@@ -3,3 +3,6 @@
     width: 600px;
     height: 600px
 }
+
+.inline { display: inline-block; }
+.clearBoth { clear:both; }

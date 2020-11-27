@@ -36,14 +36,36 @@ export class FirebaseService {
        })
     })
   }
-}
 
+  //pittääpi varmaa heittää miehistön jäsenet omana collectioonina
+  public addNewretkikunta(retkikunta) {
+    this.fireDB.collection('/retkikunnat').add(
+      retkikunta
+    )
+    .then(function(docRef) {
+      console.log("great success! New retkikunta added wit ID: ", docRef.id);
+      return docRef;
+    }).catch(function(error) {
+      console.log("epic fail! Adding new retkikunta failed: ", error)
+      return error;
+    })
+  }
+
+  public deleteRetkikunta(retkikuntaId) {
+    console.log("Lets start delete: ", retkikuntaId)
+    this.fireDB.collection("/retkikunnat").doc(retkikuntaId).delete().then(function() {
+      console.log("Document successfully deleted!");
+    }).catch(function(error) {
+      console.log("Error removing document: ", error);
+    });
+  }
 
   /*
-  db.collection("cities").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-    });
+db.collection("cities").doc("DC").delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
 });
   */
+
+}

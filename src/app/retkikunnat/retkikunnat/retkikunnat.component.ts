@@ -34,7 +34,6 @@ export class RetkikunnatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("TODO poista kommentit!");
     this.firebaseService.getRetkikunnat()
       .then(result => {
         this.dataSource = new MatTableDataSource(result);
@@ -47,8 +46,14 @@ export class RetkikunnatComponent implements OnInit {
   }
 
   openDialogCreateRetkikunta(){
-    console.log("CreateRetkikunta");
     const dialogRef = this.dialog.open(CreateRetkikuntaComponent,{panelClass: ['animate__animated','animate__slideInLeft'], height:'75%',width:'40%'});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("ja result:", result);
+    })
+  }
+
+  deleteRetkikunta(retkikuntaId) {
+    this.firebaseService.deleteRetkikunta(retkikuntaId);
   }
 
 }

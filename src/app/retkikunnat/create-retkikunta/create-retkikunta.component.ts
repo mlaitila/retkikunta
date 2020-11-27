@@ -5,6 +5,7 @@ import { trigger,transition,style,animate } from "@angular/animations";
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-create-retkikunta',
@@ -15,8 +16,8 @@ export class CreateRetkikuntaComponent {
   createExpeditionForm = this.formBuilder.group({
     name: ['', Validators.required],
     destination: ['', Validators.required],
-    startDate: [''],
-    endDate: [''],
+    startDate: ['', Validators.required],
+    endDate: ['', Validators.required],
     adventurers: this.formBuilder.array([
       this.formBuilder.control('')
     ])
@@ -29,7 +30,8 @@ export class CreateRetkikuntaComponent {
   isAnimate: true;
   constructor(
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private firebaseService: FirebaseService
   ) { }
   
   close(){
@@ -45,5 +47,17 @@ export class CreateRetkikuntaComponent {
   }
   onSubmit(){
     console.log(this.createExpeditionForm.value);
+    const result = this.firebaseService.addNewretkikunta(this.createExpeditionForm.value);
+    console.log(result);
+    this.close();
+    /*
+  ngOnInit() {
+    this.firebaseService.getRetkikunnat()
+      .then(result => {
+        this.dataSource = new MatTableDataSource(result);
+      }
+    )
+  }
+    */
   }
 }
