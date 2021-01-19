@@ -22,7 +22,7 @@
          <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
             <td mat-cell *matCellDef="let retkikunta">
-                <button mat-flat-button color="primary">Näytä</button>
+                <button mat-flat-button color="primary" (click) = "showRetkikunta(retkikunta.payload.doc.id)">Näytä</button>
                 <button mat-flat-button color="alert" (click)="deleteRetkikunta(retkikunta.payload.doc.id)">Poista</button>                
             </td>
           </ng-container>

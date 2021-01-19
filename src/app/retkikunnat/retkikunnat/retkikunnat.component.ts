@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateRetkikuntaComponent } from '../create-retkikunta/create-retkikunta.component';
 import { trigger,transition,style,animate } from "@angular/animations";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 class Retkikunta {
@@ -30,7 +31,8 @@ export class RetkikunnatComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,16 @@ export class RetkikunnatComponent implements OnInit {
 
   deleteRetkikunta(retkikuntaId) {
     this.firebaseService.deleteRetkikunta(retkikuntaId);
+  }
+
+  showRetkikunta(retkikuntaId) {
+    console.log(retkikuntaId);
+    this.router.navigate(["retkikunta"], {
+      queryParams: {
+        retkikuntaId: retkikuntaId
+      }
+    })
+    //this.router.navigate(["retkikunta"]);
   }
 
 }
