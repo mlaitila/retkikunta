@@ -53,9 +53,11 @@ export class CreateRetkikuntaComponent {
     //JSON.stringify(retkikuntaToSave); 
     //console.log(JSON.stringify(retkikuntaToSave));
     console.log(retkikuntaToSave);
-    const result = this.firebaseService.addNewretkikunta(retkikuntaToSave);
+    let travellersToSave: FormArray = this.parseTravellers();
+    console.log(travellersToSave);
+    //const result = this.firebaseService.addNewretkikunta(retkikuntaToSave);
     //const result = this.firebaseService.addNewretkikunta(this.createExpeditionForm.value);
-    console.log(result);
+    //console.log(result);
     this.close();
   }
 
@@ -66,5 +68,9 @@ export class CreateRetkikuntaComponent {
     retkikunta.startDate = this.createExpeditionForm.get('startDate').value;
     retkikunta.endDate = this.createExpeditionForm.get('endDate').value;
     return Object.assign({}, retkikunta);
+  }
+
+  parseTravellers() {
+    return this.createExpeditionForm.get('adventurers').value as FormArray;
   }
 }
