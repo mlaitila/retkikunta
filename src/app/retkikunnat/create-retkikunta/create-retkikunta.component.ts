@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { MatFormField, MatLabel } from "@angular/material/form-field"
-import { trigger,transition,style,animate } from "@angular/animations";
+//import { MatFormField, MatLabel } from "@angular/material/form-field"
+//import { trigger,transition,style,animate } from "@angular/animations";
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-create-retkikunta',
@@ -29,21 +30,23 @@ export class CreateRetkikuntaComponent {
   isAnimate: true;
   constructor(
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private firebaseService: FirebaseService
   ) { }
   
+  addAdventurer(){
+    this.adventurers.push(this.formBuilder.control(''));
+  }
+
   close(){
     document.getElementsByClassName("animate__animated")[0].classList.remove("animate__slideInLeft")
     document.getElementsByClassName("animate__animated")[0].classList.add("animate__slideOutRight");
     setTimeout(()=>{this.dialog.closeAll();}, 1000);
   }
 
-  addAdventurer(){
-    console.log("Todo add advent")
-    this.adventurers.push(this.formBuilder.control(''));
-
-  }
+  //TODO tarvihtaan retkikunnan luova dto json objekti
   onSubmit(){
-    console.log(this.createExpeditionForm.value);
+    console.log("Todo dto object!!");
+    this.firebaseService.addNewRetkikunta(this.createExpeditionForm.value);
   }
 }

@@ -34,7 +34,6 @@ export class RetkikunnatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("TODO poista kommentit!");
     this.firebaseService.getRetkikunnat()
       .then(result => {
         this.dataSource = new MatTableDataSource(result);

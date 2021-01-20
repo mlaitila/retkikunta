@@ -36,7 +36,35 @@ export class FirebaseService {
        })
     })
   }
+
+  public addNewRetkikunta(retkikunta) {
+    console.log("Lykkäåä retkikunta firebasee!")
+    console.log(retkikunta);
+    this.fireDB.collection("retkikunnat").add(
+      retkikunta
+    )
+    .then(function(docRef) {
+      console.log("great success ID: ", docRef);
+    })
+    .catch(function(error) {
+      console.log("error adding new retkikunta: ", error);
+    })
+  }
 }
+/*
+// Add a new document in collection "cities"
+db.collection("cities").doc("LA").set({
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA"
+})
+.then(function() {
+    console.log("Document successfully written!");
+})
+.catch(function(error) {
+    console.error("Error writing document: ", error);
+});
+
 
 
   /*

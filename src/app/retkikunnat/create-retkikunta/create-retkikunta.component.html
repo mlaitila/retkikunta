@@ -24,23 +24,21 @@
 			<mat-date-range-picker #picker></mat-date-range-picker>
 		  </mat-form-field>
 		</div>
-
 		<div formArrayName="adventurers">
-			<h3>adventurers</h3> <button mat-flat-button color="primary" (click)="addAdventurer()">Add adventurer</button>
+			<h3>adventurers</h3> <button mat-flat-button type="button" color="primary" (click)="addAdventurer()">Add adventurer</button>
 			<div *ngFor="let adventurer of adventurers.controls; let i=index">
-			  <!-- The repeated alias template -->
 			  <mat-label>Adventurer:</mat-label>
 				<input matInput type="text" [formControlName]="i">
 			</div>
-		  </div>
-
+		</div>
 		<mat-dialog-actions align="left">
 			<button mat-flat-button color="primary" type="submit">Add Expedition</button>
 		</mat-dialog-actions>
 	  </form>
 </mat-dialog-content>
+
 <div>
-<mat-dialog-actions align="right">
-	<button mat-flat-button color="warn" (click)="close()" >Close</button>
-</mat-dialog-actions>
+	<mat-dialog-actions align="right">
+		<button mat-flat-button color="warn" (click)="close()" >Close</button>
+	</mat-dialog-actions>
 </div>
