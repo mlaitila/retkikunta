@@ -52,7 +52,6 @@ export class FirebaseService {
   }
 
   public deleteRetkikunta(retkikuntaId) {
-    console.log("Lets start delete: ", retkikuntaId)
     this.fireDB.collection("/retkikunnat").doc(retkikuntaId).delete().then(function() {
       console.log("Document successfully deleted!");
     }).catch(function(error) {
@@ -61,14 +60,6 @@ export class FirebaseService {
   }
 
   public getRetkikunta(retkikuntaId){
-    console.log("todo getRetkikunta");
-    /*
-    let retkikuntaDoc = this.fireDB.firestore.collection("/retkikunnat").doc(retkikuntaId);
-    retkikuntaDoc.get().then(function (doc) {
-      console.log(doc.data());
-      return doc.data();
-    })
-*/
     return new Promise<any>((resolve, reject) => {
       this.fireDB.collection('/retkikunnat').doc(retkikuntaId).snapshotChanges()
       .subscribe(snapshot => {
@@ -77,44 +68,4 @@ export class FirebaseService {
     })
 
   }
-
-  /*
-  return new Promise<any>((resolve, reject) => {
-      this.fireDB.firestore.collection("/retkikunnat").doc(retkikuntaId).get();
-    })
-  */
-    
-    /*
-    let retkikuntaDoc = this.fireDB.firestore.collection("/retkikunnat").doc(retkikuntaId);
-    retkikuntaDoc.get().then(function (doc) {
-      console.log(doc.data());
-      return doc.data();
-    })
-    
-    /*
-
-  public getRetkikunnat(){
-    return new Promise<any>((resolve, reject) => {
-      this.fireDB.collection('/retkikunnat').snapshotChanges()
-      .subscribe(snapshots => {
-        resolve(snapshots);
-      })
-    })
-  }
-
-
-    this.fireDB.collection("/retkikunnat").doc(retkikuntaId).get()
-      .then(function(doc) {
-        return doc;
-      });
-      */
-
-  /*
-db.collection("cities").doc("DC").delete().then(function() {
-    console.log("Document successfully deleted!");
-}).catch(function(error) {
-    console.error("Error removing document: ", error);
-});
-  */
-
 }

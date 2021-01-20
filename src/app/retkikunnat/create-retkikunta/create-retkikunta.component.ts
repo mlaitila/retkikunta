@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { FirebaseService } from '../../services/firebase.service';
+import { Retkikunta } from 'src/app/services/retkikunta-dto.service';
 
 @Component({
   selector: 'app-create-retkikunta',
@@ -47,17 +48,23 @@ export class CreateRetkikuntaComponent {
   }
   onSubmit(){
     console.log(this.createExpeditionForm.value);
-    const result = this.firebaseService.addNewretkikunta(this.createExpeditionForm.value);
+    let retkikuntaToSave = this.parseRetkikuntaFromForm();
+    console.log(this.createExpeditionForm.value);
+    //JSON.stringify(retkikuntaToSave); 
+    //console.log(JSON.stringify(retkikuntaToSave));
+    console.log(retkikuntaToSave);
+    const result = this.firebaseService.addNewretkikunta(retkikuntaToSave);
+    //const result = this.firebaseService.addNewretkikunta(this.createExpeditionForm.value);
     console.log(result);
     this.close();
-    /*
-  ngOnInit() {
-    this.firebaseService.getRetkikunnat()
-      .then(result => {
-        this.dataSource = new MatTableDataSource(result);
-      }
-    )
   }
-    */
+
+  parseRetkikuntaFromForm () {
+    let retkikunta = new Retkikunta();
+    retkikunta.name = this.createExpeditionForm.get('name').value;
+    retkikunta.destination = this.createExpeditionForm.get('destination').value;
+    retkikunta.startDate = this.createExpeditionForm.get('startDate').value;
+    retkikunta.endDate = this.createExpeditionForm.get('endDate').value;
+    return Object.assign({}, retkikunta);
   }
 }

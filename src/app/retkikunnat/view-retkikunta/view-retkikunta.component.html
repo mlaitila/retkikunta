@@ -1,3 +1,11 @@
-<p>view-retkikunta works!</p>
-<p>{{retkikunta}}</p>
+<h1> {{ retkikunta?.name }}</h1>
+<p> {{ retkikunta?.id }}</p>
+<p> {{ retkikunta?.destination }}</p>
 
+
+<div>
+    <div class="inline">
+        <h3>adventurers</h3>
+        <button mat-icon-button type="button" (click)="addAdventurer()"><mat-icon class="green-icon">add_circle</mat-icon></button>
+    </div>
+  </div>

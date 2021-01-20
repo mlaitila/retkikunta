@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
+import { Retkikunta } from 'src/app/services/retkikunta-dto.service';
 
 @Component({
   selector: 'app-view-retkikunta',
@@ -10,7 +11,7 @@ import { FirebaseService } from '../../services/firebase.service';
 export class ViewRetkikuntaComponent implements OnInit {
 
   retkikuntaId: string;
-  retkikunta: any;
+  retkikunta: Retkikunta;
 
   constructor(
     private router: ActivatedRoute,
@@ -29,7 +30,12 @@ export class ViewRetkikuntaComponent implements OnInit {
     .then(result => {
       console.log(result);
       this.retkikunta = result;
+      this.retkikunta.id = this.retkikuntaId;
     });
+  }
+
+  addAdventurer(){
+    console.log("add adventurer");
   }
   
 /*
